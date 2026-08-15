@@ -145,6 +145,7 @@ async function autoCloseDuplicates(): Promise<void> {
 
   let processedCount = 0;
   let candidateCount = 0;
+  let closedCount = 0;
 
   for (const issue of issues) {
     processedCount++;
@@ -259,6 +260,10 @@ async function autoCloseDuplicates(): Promise<void> {
       console.log(
         `[SUCCESS] Successfully closed issue #${issue.number} as duplicate of #${duplicateIssueNumber}`
       );
+      closedCount++;
+      
+      // Add a small delay between API calls to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 500));
     } catch (error) {
       console.error(
         `[ERROR] Failed to close issue #${issue.number} as duplicate: ${error}`
@@ -267,7 +272,7 @@ async function autoCloseDuplicates(): Promise<void> {
   }
 
   console.log(
-    `[DEBUG] Script completed. Processed ${processedCount} issues, found ${candidateCount} candidates for auto-close`
+    `[DEBUG] Script completed. Processed ${processedCount} issues, found ${candidateCount} candidates, closed ${closedCount} as duplicates`
   );
 }
 

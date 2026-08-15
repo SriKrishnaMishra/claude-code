@@ -14,6 +14,8 @@ body:
         **This is for:** Unexpected actions, file modifications outside scope, ignoring instructions, making assumptions
         **NOT for:** Crashes, API errors, or installation issues (use Bug Report instead)
         
+        ⚠️ **For API safeguard flags (cybersecurity work blocked)**: These cannot be fixed through this repository. Please use the `/feedback` command in Claude Code with your Feedback ID, or visit [Anthropic Support](https://support.anthropic.com).
+        
   - type: checkboxes
     id: preflight
     attributes:
