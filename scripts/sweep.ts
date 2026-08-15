@@ -63,7 +63,7 @@ async function markStale(owner: string, repo: string) {
       if (issue.assignees?.length > 0) continue;
 
       const updatedAt = new Date(issue.updated_at);
-      if (updatedAt > cutoff) return labeled;
+      if (updatedAt > cutoff) continue; // Skip recently updated, don't exit early
 
       const alreadyStale = issue.labels?.some(
         (l: any) => l.name === "stale" || l.name === "autoclose"
