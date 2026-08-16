@@ -22,9 +22,21 @@ try:
     from hookify.core.config_loader import load_rules
     from hookify.core.rule_engine import RuleEngine
 except ImportError as e:
-    error_msg = {"systemMessage": f"Hookify import error: {e}"}
-    print(json.dumps(error_msg), file=sys.stdout)
-    sys.exit(0)
+    # Try alternative import paths
+    try:
+        # Add plugin root to path if CLAUDE_PLUGIN_ROOT is set
+        plugin_root = os.environ.get('CLAUDE_PLUGIN_ROOT')
+        if plugin_root and plugin_root not in sys.path:
+            sys.path.insert(0, plugin_root)
+        
+        # Try importing from current directory structure
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from core.config_loader import load_rules
+        from core.rule_engine import RuleEngine
+    except ImportError:
+        error_msg = {"systemMessage": f"Hookify import error: {e}"}
+        print(json.dumps(error_msg), file=sys.stdout)
+        sys.exit(0)
 
 
 def main():

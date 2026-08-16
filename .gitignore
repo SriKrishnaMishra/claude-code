@@ -1,78 +1,27 @@
 ```
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+
 # Dependencies
+.venv/
+venv/
 node_modules/
 
-# Build artifacts
-dist/
-build/
-target/
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.pyc
-*.pyo
-.Python
-env/
-venv/
-.venv/
-.ENV
-.venv.bak/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
+# Logs and temp files
 *.log
 *.tmp
 *.swp
-*.swo
-.DS_Store
-Thumbs.db
 
-# Logs
-*.log
-
-# Environment variables
+# Environment
 .env
 .env.local
-*.env.*
+.env.*
 
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# MyPy
-.mypy_cache/
-
-# PyTest
-.pytest_cache/
-
-# VSCode
+# Editors
 .vscode/
-
-# JetBrains IDEs
 .idea/
 
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.backup
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Original rules preserved
+*.log
 ```
