@@ -3,11 +3,27 @@
 
 import re
 import sys
+import os
 from functools import lru_cache
 from typing import List, Dict, Any, Optional
 
-# Import from local module
-from hookify.core.config_loader import Rule, Condition
+# Add the parent directory to path for imports when running as script
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+if _script_dir not in sys.path:
+    sys.path.insert(0, _script_dir)
+
+# Import from local module (relative import)
+try:
+    from hookify.core.config_loader import Rule, Condition
+except ImportError:
+    try:
+        from config_loader import Rule, Condition
+    except ImportError:
+        # Define stub classes if imports fail
+        class Rule:
+            pass
+        class Condition:
+            pass
 
 
 # Cache compiled regexes (max 128 patterns)
@@ -275,8 +291,7 @@ class RuleEngine:
 
 # For testing
 if __name__ == '__main__':
-    from hookify.core.config_loader import Condition, Rule
-
+    # Use already imported Rule and Condition from top of file
     # Test rule evaluation
     rule = Rule(
         name="test-rm",
